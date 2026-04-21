@@ -89,27 +89,24 @@ a { color: inherit; text-decoration: none; }
 }
 
 .logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-family: 'Fraunces', serif;
-  font-weight: 600;
-  font-size: 20px;
-  letter-spacing: -0.01em;
 }
 
-.logo-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: var(--navy);
-  color: var(--cream);
-  display: grid;
-  place-items: center;
-  font-size: 14px;
-  font-weight: 700;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  letter-spacing: 0;
+.logo img {
+  height: 56px;
+  width: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover img {
+  transform: scale(1.04);
+}
+
+.footer .logo img {
+  height: 80px;
+  margin-bottom: 20px;
 }
 
 .nav-links {
@@ -1050,6 +1047,8 @@ section {
 /* ============ RESPONSIVE ============ */
 @media (max-width: 960px) {
   .nav-links { display: none; }
+  .logo img { height: 44px; }
+  .footer .logo img { height: 64px; }
   .hero { padding: 48px 0 80px; }
   .hero-grid { grid-template-columns: 1fr; gap: 60px; }
   .hero-visual { max-width: 440px; margin: 0 auto; width: 100%; }
@@ -1087,9 +1086,8 @@ section {
 <!-- ============ NAV ============ -->
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="#" class="logo">
-      <span class="logo-mark">YLM</span>
-      <span>Your Laundry Mates</span>
+    <a href="#" class="logo" aria-label="Your Laundry Mates">
+      <img src="logo.png" alt="Your Laundry Mates" />
     </a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
@@ -1363,9 +1361,8 @@ section {
   <div class="container">
     <div class="footer-grid">
       <div class="footer-about">
-        <a href="#" class="logo" style="margin-bottom: 20px;">
-          <span class="logo-mark">YLM</span>
-          <span>Your Laundry Mates</span>
+        <a href="#" class="logo" aria-label="Your Laundry Mates">
+          <img src="logo.png" alt="Your Laundry Mates" />
         </a>
         <p>Concierge wash &amp; fold, pickup &amp; delivery, in-home folding. Family-owned and operated by Kathy, Zoe &amp; Mia in Fulshear, Katy, and Richmond.</p>
         <div class="social-links">
