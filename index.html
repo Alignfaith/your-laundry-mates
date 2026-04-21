@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Concierge wash & fold service in Fulshear, Katy, and Richmond. Pickup and delivery by 8 AM the next day. Family-owned by Kathy, Zoe, and Mia." />
+<title>Your Laundry Mates — Concierge Wash & Fold in Fulshear, Katy & Richmond</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream: #f6efe2;
+  --cream-deep: #ede4d2;
+  --ink: #1a2238;
+  --ink-soft: #3a4365;
+  --navy: #1e3a5f;
+  --peach: #e8886b;
+  --peach-soft: #f4b79a;
+  --sage: #8aa48e;
+  --paper: #fbf7ee;
+  --rule: rgba(26, 34, 56, 0.12);
+  --shadow-sm: 0 2px 8px rgba(26, 34, 56, 0.06);
+  --shadow-md: 0 12px 32px rgba(26, 34, 56, 0.08);
+  --shadow-lg: 0 24px 60px rgba(26, 34, 56, 0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Subtle paper grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  z-index: 1;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.13  0 0 0 0 0.22  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 32px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ============ NAV ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 20px 0;
+  background: rgba(246, 239, 226, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--cream);
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+  list-style: none;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.nav-links a {
+  color: var(--ink-soft);
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-links a:hover { color: var(--navy); }
+
+.nav-cta {
+  background: var(--navy);
+  color: var(--cream) !important;
+  padding: 11px 22px;
+  border-radius: 100px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-cta:hover {
+  background: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; }
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  padding: 80px 0 120px;
+  overflow: hidden;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 28px;
+}
+
+.eyebrow .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--peach);
+  animation: pulse 2.2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  margin-bottom: 28px;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--peach);
+  position: relative;
+}
+
+.hero h1 em::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 0.05em;
+  height: 0.08em;
+  background: var(--peach-soft);
+  opacity: 0.4;
+  z-index: -1;
+}
+
+.hero-sub {
+  font-size: 19px;
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+  max-width: 540px;
+  line-height: 1.55;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 16px 32px;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  background: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-primary svg { transition: transform 0.25s ease; }
+.btn-primary:hover svg { transform: translateX(3px); }
+
+.btn-secondary {
+  color: var(--ink);
+  padding: 16px 8px;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 2px solid var(--ink);
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  color: var(--peach);
+  border-color: var(--peach);
+}
+
+.hero-meta {
+  margin-top: 48px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.hero-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero-meta-item svg { color: var(--sage); }
+
+/* Hero visual card */
+.hero-visual {
+  position: relative;
+  aspect-ratio: 4 / 5;
+}
+
+.price-card {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  border-radius: 28px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  transform: rotate(-1.5deg);
+  transition: transform 0.4s ease;
+}
+
+.price-card:hover { transform: rotate(0deg); }
+
+.price-card::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, var(--peach-soft), transparent 70%);
+  opacity: 0.45;
+}
+
+.price-card-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--peach);
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.price-card h3 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.price-card p {
+  color: var(--ink-soft);
+  margin-bottom: 28px;
+  position: relative;
+  line-height: 1.55;
+}
+
+.price-card .strike {
+  position: relative;
+  display: inline-block;
+  color: var(--ink-soft);
+}
+
+.price-card .strike::before {
+  content: '';
+  position: absolute;
+  left: -4px; right: -4px; top: 50%;
+  height: 2px;
+  background: var(--peach);
+  transform: rotate(-3deg);
+}
+
+.price-card-bag {
+  font-family: 'Fraunces', serif;
+  font-size: 54px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--navy);
+  position: relative;
+}
+
+.price-card-bag span {
+  font-size: 18px;
+  color: var(--ink-soft);
+  font-weight: 400;
+  font-style: italic;
+}
+
+.floating-tag {
+  position: absolute;
+  background: var(--navy);
+  color: var(--cream);
+  padding: 14px 20px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+  z-index: 5;
+}
+
+.floating-tag.tag-1 {
+  top: 20px; right: -30px;
+  transform: rotate(6deg);
+  background: var(--peach);
+}
+
+.floating-tag.tag-2 {
+  bottom: 60px; left: -30px;
+  transform: rotate(-5deg);
+  background: var(--cream);
+  color: var(--navy);
+  border: 1px solid var(--rule);
+}
+
+/* ============ MARQUEE ============ */
+.marquee {
+  padding: 28px 0;
+  background: var(--ink);
+  color: var(--cream);
+  overflow: hidden;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  position: relative;
+  z-index: 3;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 60px;
+  white-space: nowrap;
+  animation: scroll 32s linear infinite;
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.marquee-track span { display: inline-flex; align-items: center; gap: 60px; }
+.marquee-track .sep {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--peach);
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ============ SECTION BASE ============ */
+section {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--peach);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.section-label::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: var(--peach);
+}
+
+.section-title {
+  font-size: clamp(2.1rem, 4.5vw, 3.4rem);
+  margin-bottom: 24px;
+  max-width: 700px;
+}
+
+.section-intro {
+  font-size: 18px;
+  color: var(--ink-soft);
+  max-width: 600px;
+  margin-bottom: 64px;
+  line-height: 1.55;
+}
+
+/* ============ WHY / VALUE PROP ============ */
+.value {
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.value-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.value-headline {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.value-headline em {
+  font-style: italic;
+  color: var(--peach);
+  font-weight: 400;
+}
+
+.time-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.time-list li {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: var(--ink);
+  transition: all 0.3s ease;
+}
+
+.time-list li:hover {
+  padding-left: 12px;
+  color: var(--navy);
+}
+
+.time-list li:last-child { border-bottom: none; }
+
+.time-list .num {
+  font-size: 14px;
+  color: var(--peach);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  font-style: normal;
+}
+
+/* ============ SERVICES ============ */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.service-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 24px;
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  min-height: 420px;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--navy);
+}
+
+.service-card.featured {
+  background: var(--navy);
+  color: var(--cream);
+  border-color: var(--navy);
+}
+
+.service-card.featured .service-label { color: var(--peach-soft); }
+.service-card.featured h3 { color: var(--cream); }
+.service-card.featured .service-desc { color: rgba(246, 239, 226, 0.75); }
+.service-card.featured .service-detail { color: rgba(246, 239, 226, 0.9); border-color: rgba(246, 239, 226, 0.15); }
+
+.service-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: var(--cream-deep);
+  display: grid;
+  place-items: center;
+  margin-bottom: 28px;
+  color: var(--navy);
+}
+
+.service-card.featured .service-icon {
+  background: rgba(246, 239, 226, 0.12);
+  color: var(--peach-soft);
+}
+
+.service-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--peach);
+  margin-bottom: 10px;
+}
+
+.service-card h3 {
+  font-size: 1.75rem;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+.service-desc {
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.service-detail {
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.featured-ribbon {
+  position: absolute;
+  top: 24px; right: 24px;
+  background: var(--peach);
+  color: var(--ink);
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ============ DELIVERY PROMISE ============ */
+.promise {
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: 32px;
+  padding: 72px 80px;
+  margin: 0 auto;
+  max-width: 1160px;
+  position: relative;
+  overflow: hidden;
+}
+
+.promise::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(232, 136, 107, 0.28), transparent 70%);
+}
+
+.promise::after {
+  content: '';
+  position: absolute;
+  bottom: -150px; left: -50px;
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(138, 164, 142, 0.18), transparent 70%);
+}
+
+.promise-content { position: relative; z-index: 2; display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; align-items: center; }
+
+.promise h2 {
+  color: var(--cream);
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 20px;
+}
+
+.promise h2 em {
+  color: var(--peach-soft);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.promise p {
+  color: rgba(246, 239, 226, 0.8);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.promise-time {
+  text-align: center;
+  padding: 40px;
+  background: rgba(246, 239, 226, 0.06);
+  border-radius: 24px;
+  border: 1px solid rgba(246, 239, 226, 0.12);
+}
+
+.promise-time .big {
+  font-family: 'Fraunces', serif;
+  font-size: 96px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--peach-soft);
+  letter-spacing: -0.04em;
+}
+
+.promise-time .suffix {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  color: var(--cream);
+  margin-left: 4px;
+}
+
+.promise-time .desc {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(246, 239, 226, 0.7);
+}
+
+/* ============ SERVICE AREA ============ */
+.areas {
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.areas-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.area-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.area-card {
+  background: var(--cream);
+  border-radius: 20px;
+  padding: 32px 28px;
+  border: 1px solid var(--rule);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.area-card:nth-child(1) { grid-column: 1 / 2; }
+.area-card:nth-child(2) { grid-column: 2 / 3; transform: translateY(24px); }
+.area-card:nth-child(3) { grid-column: 1 / 3; }
+
+.area-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.area-card:nth-child(2):hover { transform: translateY(20px); }
+
+.area-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+}
+
+.area-card p {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.area-pin {
+  position: absolute;
+  top: 24px; right: 24px;
+  color: var(--peach);
+}
+
+/* ============ BONUSES ============ */
+.bonuses-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.bonus-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 24px;
+  padding: 48px;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.bonus-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--peach-soft);
+}
+
+.bonus-icon {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: var(--peach);
+  color: var(--cream);
+  display: grid;
+  place-items: center;
+}
+
+.bonus-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.bonus-card p { color: var(--ink-soft); }
+
+/* ============ FAMILY ============ */
+.family {
+  background: var(--ink);
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.family::before {
+  content: '';
+  position: absolute;
+  top: 10%; right: -10%;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(232, 136, 107, 0.1), transparent 70%);
+  pointer-events: none;
+}
+
+.family h2 { color: var(--cream); }
+.family .section-label { color: var(--peach-soft); }
+.family .section-intro { color: rgba(246, 239, 226, 0.8); }
+
+.family-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin-top: 64px;
+}
+
+.family-member {
+  background: rgba(246, 239, 226, 0.05);
+  border: 1px solid rgba(246, 239, 226, 0.12);
+  border-radius: 24px;
+  padding: 40px 32px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.family-member:hover {
+  background: rgba(246, 239, 226, 0.08);
+  transform: translateY(-4px);
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  background: var(--peach);
+  display: grid;
+  place-items: center;
+  font-family: 'Fraunces', serif;
+  font-size: 44px;
+  font-weight: 500;
+  color: var(--ink);
+  position: relative;
+}
+
+.avatar::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: 1px dashed rgba(246, 239, 226, 0.3);
+  border-radius: 50%;
+}
+
+.family-member:nth-child(2) .avatar { background: var(--peach-soft); }
+.family-member:nth-child(3) .avatar { background: var(--sage); color: var(--cream); }
+
+.family-member h3 {
+  color: var(--cream);
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+
+.family-role {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--peach-soft);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.family-bio {
+  color: rgba(246, 239, 226, 0.75);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+/* ============ CTA ============ */
+.cta-section {
+  padding: 140px 0;
+  text-align: center;
+}
+
+.cta-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin-bottom: 32px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.05;
+}
+
+.cta-title em {
+  font-style: italic;
+  color: var(--peach);
+  font-weight: 400;
+}
+
+.cta-phone {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 32px 56px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 24px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.cta-phone:hover {
+  background: var(--navy);
+  color: var(--cream);
+  border-color: var(--navy);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cta-phone:hover .cta-phone-label { color: rgba(246, 239, 226, 0.7); }
+
+.cta-phone-label {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.cta-phone-number {
+  font-family: 'Fraunces', serif;
+  font-size: 42px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.cta-sub {
+  margin-top: 36px;
+  color: var(--ink-soft);
+  font-size: 16px;
+}
+
+/* ============ FOOTER ============ */
+.footer {
+  background: var(--cream-deep);
+  padding: 64px 0 40px;
+  border-top: 1px solid var(--rule);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer h4 {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 18px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+}
+
+.footer-about p {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 360px;
+}
+
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 10px; }
+.footer ul a { color: var(--ink-soft); font-size: 15px; transition: color 0.2s ease; }
+.footer ul a:hover { color: var(--peach); }
+
+.social-links {
+  display: flex;
+  gap: 12px;
+}
+
+.social-links a {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  display: grid;
+  place-items: center;
+  color: var(--navy);
+  transition: all 0.25s ease;
+}
+
+.social-links a:hover {
+  background: var(--navy);
+  color: var(--cream);
+  border-color: var(--navy);
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.footer-bottom p { font-family: 'Fraunces', serif; font-style: italic; }
+
+/* ============ REVEAL ANIMATION ============ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 960px) {
+  .nav-links { display: none; }
+  .hero { padding: 48px 0 80px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 60px; }
+  .hero-visual { max-width: 440px; margin: 0 auto; width: 100%; }
+  section { padding: 80px 0; }
+  .value-grid, .areas-grid, .promise-content { grid-template-columns: 1fr; gap: 40px; }
+  .services-grid, .family-grid { grid-template-columns: 1fr; }
+  .bonuses-grid { grid-template-columns: 1fr; }
+  .promise { padding: 56px 36px; border-radius: 24px; }
+  .promise-time { padding: 32px; }
+  .promise-time .big { font-size: 72px; }
+  .area-cards { grid-template-columns: 1fr; }
+  .area-card, .area-card:nth-child(2), .area-card:nth-child(3) { grid-column: 1; transform: none; }
+  .area-card:nth-child(2):hover { transform: translateY(-4px); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-about { grid-column: 1 / -1; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .bonus-card { padding: 36px 32px; flex-direction: column; gap: 20px; }
+  .floating-tag.tag-1 { right: -10px; }
+  .floating-tag.tag-2 { left: -10px; }
+  .container { padding: 0 24px; }
+  .cta-phone { padding: 24px 32px; width: 100%; }
+  .cta-phone-number { font-size: 32px; }
+}
+
+@media (max-width: 560px) {
+  .hero-meta { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero-ctas { flex-direction: column; align-items: stretch; width: 100%; }
+  .btn-primary, .btn-secondary { justify-content: center; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-mark">YLM</span>
+      <span>Your Laundry Mates</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#areas">Service Area</a></li>
+      <li><a href="#family">Our Family</a></li>
+      <li><a href="tel:+12816050110" class="nav-cta">Call Kathy</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        Fulshear · Katy · Richmond
+      </div>
+      <h1>Laundry done <em>beautifully</em>, so you can live the rest.</h1>
+      <p class="hero-sub">Concierge wash &amp; fold handled with care, attention, and consistency every single time. We pick up, we wash, we fold, and we return it to your door by 8 AM the next morning.</p>
+
+      <div class="hero-ctas">
+        <a href="tel:+12816050110" class="btn-primary">
+          Get Started Today
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#services" class="btn-secondary">See how it works</a>
+      </div>
+
+      <div class="hero-meta">
+        <span class="hero-meta-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Family-owned &amp; operated
+        </span>
+        <span class="hero-meta-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Next-day delivery guarantee
+        </span>
+        <span class="hero-meta-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Free bag on your first service
+        </span>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="floating-tag tag-1">Next-day by 8 AM</div>
+      <div class="floating-tag tag-2">Free first bag</div>
+      <div class="price-card">
+        <div>
+          <div class="price-card-label">Simple &amp; honest pricing</div>
+          <h3>By the bag. Not the pound.</h3>
+          <p>Forget the scale and the surprise receipt. One flat price, one bag, every time. And members? Members get the best rates in town.</p>
+        </div>
+        <div>
+          <div class="price-card-bag">
+            <span class="strike">per lb.</span><br/>
+            per bag <span>·  keep it simple</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Picked up at your door<span class="sep"></span>Washed with care<span class="sep"></span>Folded with intention<span class="sep"></span>Returned by 8 AM<span class="sep"></span>Picked up at your door<span class="sep"></span>Washed with care<span class="sep"></span>Folded with intention<span class="sep"></span>Returned by 8 AM<span class="sep"></span></span>
+    <span>Picked up at your door<span class="sep"></span>Washed with care<span class="sep"></span>Folded with intention<span class="sep"></span>Returned by 8 AM<span class="sep"></span>Picked up at your door<span class="sep"></span>Washed with care<span class="sep"></span>Folded with intention<span class="sep"></span>Returned by 8 AM<span class="sep"></span></span>
+  </div>
+</div>
+
+<!-- ============ VALUE PROP ============ -->
+<section class="value">
+  <div class="container value-grid">
+    <div class="reveal">
+      <div class="section-label">Why Your Laundry Mates</div>
+      <h2 class="value-headline">Anyone can wash and fold. We give you <em>your time</em> back.</h2>
+    </div>
+    <ul class="time-list reveal">
+      <li><span class="num">01</span> Family time</li>
+      <li><span class="num">02</span> Gym time</li>
+      <li><span class="num">03</span> Sleep</li>
+      <li><span class="num">04</span> Play time</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">What we offer</div>
+      <h2 class="section-title">Three ways to hand off the hamper.</h2>
+      <p class="section-intro">Every option comes with our signature care: sorted, washed, and folded like we do it for our own family. Which is actually what we do, by the way.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 7v13a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-3-5H6Z"/><line x1="3" y1="7" x2="21" y2="7"/><path d="M16 11a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <div class="service-label">Wash &amp; Fold</div>
+        <h3>By the bag, not the pound.</h3>
+        <p class="service-desc">Straightforward, honest pricing. Pack the bag, schedule a pickup, and we handle the rest. No guesswork. No weighing-in games.</p>
+        <div class="service-detail">One flat rate · All sizes welcome</div>
+      </div>
+
+      <div class="service-card featured reveal">
+        <div class="featured-ribbon">Best Rate</div>
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 15 8l7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1Z"/></svg>
+        </div>
+        <div class="service-label">Members Only</div>
+        <h3>Weekly membership plans.</h3>
+        <p class="service-desc">Our regulars get the best rates in town. Consistent schedule, consistent quality, consistent peace of mind week after week.</p>
+        <div class="service-detail">Call Kathy for current member pricing →</div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 12 2l9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="service-label">In-Home Service</div>
+        <h3>Folded in your home, your way.</h3>
+        <p class="service-desc">Prefer everything folded exactly how you like it? We come to you and handle it on-site. T-shirts the Marie Kondo way? Towels in thirds? Say the word.</p>
+        <div class="service-detail">Hourly rate · Fold-style tailored to you</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROMISE ============ -->
+<section style="padding: 0 0 120px;">
+  <div class="container">
+    <div class="promise reveal">
+      <div class="promise-content">
+        <div>
+          <div class="section-label" style="color: var(--peach-soft);">Our Guarantee</div>
+          <h2>Picked up today. <em>Returned by 8 AM tomorrow.</em></h2>
+          <p>No matter when we pick it up, your laundry is back at your door before most people have finished their first cup of coffee. Yes, really.</p>
+        </div>
+        <div class="promise-time">
+          <div>
+            <span class="big">8</span><span class="suffix">AM</span>
+          </div>
+          <div class="desc">Next-day · Guaranteed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICE AREA ============ -->
+<section id="areas" class="areas">
+  <div class="container areas-grid">
+    <div class="reveal">
+      <div class="section-label">Where we serve</div>
+      <h2 class="section-title">Proudly local. Proudly your neighbors.</h2>
+      <p class="section-intro">We live in these communities, our kids grow up in these schools, and we treat your laundry like it belongs to someone down the street — because it does.</p>
+    </div>
+
+    <div class="area-cards reveal">
+      <div class="area-card">
+        <div class="area-pin">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Fulshear</h3>
+        <p>Full coverage</p>
+      </div>
+      <div class="area-card">
+        <div class="area-pin">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Katy</h3>
+        <p>Full coverage</p>
+      </div>
+      <div class="area-card">
+        <div class="area-pin">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3>Richmond</h3>
+        <p>Full coverage · Text Kathy if you're on the edge of the map — we often make it work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BONUSES ============ -->
+<section>
+  <div class="container">
+    <div class="reveal" style="text-align: center; max-width: 720px; margin: 0 auto 72px;">
+      <div class="section-label" style="justify-content: center;">Little extras that make it easier</div>
+      <h2 class="section-title" style="margin-left: auto; margin-right: auto;">We make the first bag free. And reward you for bringing friends.</h2>
+    </div>
+
+    <div class="bonuses-grid">
+      <div class="bonus-card reveal">
+        <div class="bonus-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        </div>
+        <div>
+          <h3>First-time bonus</h3>
+          <p>We provide the bag for your first service — on us. That's how easy getting started should be.</p>
+        </div>
+      </div>
+
+      <div class="bonus-card reveal">
+        <div class="bonus-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="m17 11 2 2 4-4"/></svg>
+        </div>
+        <div>
+          <h3>Referral program</h3>
+          <p>Love the service? Refer a friend and get a free bag of laundry on us. Our best customers always come from word-of-mouth.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAMILY ============ -->
+<section id="family" class="family">
+  <div class="container">
+    <div class="reveal" style="text-align: center; max-width: 720px; margin: 0 auto;">
+      <div class="section-label" style="justify-content: center;">Meet the family</div>
+      <h2 class="section-title" style="margin-left: auto; margin-right: auto;">Kathy, Zoe &amp; Mia.</h2>
+      <p class="section-intro" style="margin-left: auto; margin-right: auto;">Your laundry is handled by actual humans who live here, know the neighborhood, and show up every week with heart and hustle.</p>
+    </div>
+
+    <div class="family-grid">
+      <div class="family-member reveal">
+        <div class="avatar">K</div>
+        <h3>Kathy</h3>
+        <div class="family-role">Founder &amp; Mom-in-Chief</div>
+        <p class="family-bio">The one who picks up the phone, sets the standard, and makes sure every bag comes back right. Call her — she answers.</p>
+      </div>
+      <div class="family-member reveal">
+        <div class="avatar">Z</div>
+        <h3>Zoe</h3>
+        <div class="family-role">Age 23 · Daughter</div>
+        <p class="family-bio">Keeps the pickup routes humming and handles the details so nothing falls through the cracks.</p>
+      </div>
+      <div class="family-member reveal">
+        <div class="avatar">M</div>
+        <h3>Mia</h3>
+        <div class="family-role">Age 21 · Daughter</div>
+        <p class="family-bio">The folding is almost certainly hers. Consistent, crisp, and always the way you like it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta-section">
+  <div class="container reveal">
+    <h2 class="cta-title">Your time is too valuable <em>to spend doing laundry.</em></h2>
+    <p style="color: var(--ink-soft); font-size: 18px; max-width: 520px; margin: 0 auto;">Call or text Kathy directly to get started. No apps, no forms, no runaround.</p>
+
+    <a href="tel:+12816050110" class="cta-phone">
+      <span class="cta-phone-label">Call or Text</span>
+      <span class="cta-phone-number">281.605.0110</span>
+    </a>
+
+    <p class="cta-sub">Or message us on Facebook &mdash; we usually reply within the hour.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a href="#" class="logo" style="margin-bottom: 20px;">
+          <span class="logo-mark">YLM</span>
+          <span>Your Laundry Mates</span>
+        </a>
+        <p>Concierge wash &amp; fold, pickup &amp; delivery, in-home folding. Family-owned and operated by Kathy, Zoe &amp; Mia in Fulshear, Katy, and Richmond.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/share/1N87GG4cct/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+          </a>
+          <a href="tel:+12816050110" aria-label="Phone">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
+          <a href="sms:+12816050110" aria-label="Text message">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Wash &amp; Fold</a></li>
+          <li><a href="#services">Memberships</a></li>
+          <li><a href="#services">In-Home Folding</a></li>
+          <li><a href="#services">Pickup &amp; Delivery</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Service Area</h4>
+        <ul>
+          <li><a href="#areas">Fulshear</a></li>
+          <li><a href="#areas">Katy</a></li>
+          <li><a href="#areas">Richmond</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="tel:+12816050110">281.605.0110</a></li>
+          <li><a href="sms:+12816050110">Send a text</a></li>
+          <li><a href="https://www.facebook.com/share/1N87GG4cct/?mibextid=wwXIfr" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>Your time is too valuable to spend doing laundry.</p>
+      <p style="font-family: 'Plus Jakarta Sans', sans-serif; font-style: normal;">&copy; 2026 Your Laundry Mates. Made with heart in Texas.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth scroll offset for sticky nav
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
