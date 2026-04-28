@@ -1,0 +1,11 @@
+{
+  "name": "your-laundry-mates",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "resend": "^4.0.0"
+  }
+}

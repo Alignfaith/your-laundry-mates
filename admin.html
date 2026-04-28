@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Your Laundry Mates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #f6efe2;
+  --cream-deep: #ede4d2;
+  --ink: #0f2847;
+  --ink-soft: #334664;
+  --navy: #153a66;
+  --peach: #2b9cb0;
+  --peach-soft: #86cfdc;
+  --paper: #fbf7ee;
+  --rule: rgba(15, 40, 71, 0.12);
+  --shadow-sm: 0 2px 8px rgba(15, 40, 71, 0.06);
+  --shadow-md: 0 12px 32px rgba(15, 40, 71, 0.08);
+  --shadow-lg: 0 24px 60px rgba(15, 40, 71, 0.14);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ── Login ── */
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.login-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 24px;
+  padding: 48px 44px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow-lg);
+}
+.login-card h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.9rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+}
+.login-card h1 em { font-style: italic; color: var(--peach); font-weight: 400; }
+.login-card p { color: var(--ink-soft); font-size: 14px; margin-bottom: 32px; }
+.login-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid rgba(15, 40, 71, 0.18);
+  border-radius: 12px;
+  background: var(--cream);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+  margin-bottom: 12px;
+}
+.login-input:focus { border-color: var(--peach); }
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--navy);
+  color: var(--cream);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.login-btn:hover { background: var(--ink); }
+.login-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+.login-error {
+  display: none;
+  color: #a01818;
+  font-size: 13px;
+  margin-top: 10px;
+  text-align: center;
+}
+.login-error.visible { display: block; }
+
+/* ── Nav ── */
+.admin-nav {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.admin-nav-brand { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 400; }
+.admin-nav-brand em { font-style: italic; color: var(--peach-soft); }
+.admin-nav-right { display: flex; align-items: center; gap: 20px; }
+.admin-nav-count { font-size: 13px; color: rgba(246, 239, 226, 0.55); }
+.logout-btn {
+  background: none;
+  border: 1px solid rgba(246, 239, 226, 0.2);
+  color: rgba(246, 239, 226, 0.8);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.logout-btn:hover { border-color: rgba(246, 239, 226, 0.5); color: var(--cream); }
+
+/* ── Main ── */
+.admin-main { padding: 32px; max-width: 1200px; margin: 0 auto; }
+
+/* ── Stats ── */
+.stats-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 28px; }
+.stat-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: 20px 20px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+.stat-card:hover { box-shadow: var(--shadow-sm); border-color: var(--peach-soft); }
+.stat-card.active { border-color: var(--peach); background: rgba(43, 156, 176, 0.06); }
+.stat-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
+.stat-value { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 500; color: var(--ink); line-height: 1; }
+
+/* ── Toolbar ── */
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.table-count { font-size: 13px; color: var(--ink-soft); }
+.refresh-btn {
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.refresh-btn:hover { border-color: var(--peach); color: var(--navy); }
+
+/* ── Table ── */
+.table-wrap {
+  overflow-x: auto;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+}
+table { width: 100%; min-width: 760px; border-collapse: collapse; }
+thead th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule);
+  background: var(--cream-deep);
+  white-space: nowrap;
+}
+thead th:first-child { border-radius: 16px 0 0 0; }
+thead th:last-child { border-radius: 0 16px 0 0; text-align: right; }
+tbody tr { border-bottom: 1px solid var(--rule); transition: background 0.15s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(43, 156, 176, 0.04); }
+td { padding: 13px 16px; vertical-align: middle; font-size: 14px; }
+td:last-child { text-align: right; }
+.td-date { color: var(--ink-soft); white-space: nowrap; font-size: 13px; }
+.td-name { font-weight: 600; }
+.td-contact-val { color: var(--ink-soft); font-size: 13px; }
+.td-contact-type { font-size: 11px; color: var(--ink-soft); opacity: 0.6; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+.td-freq { font-size: 13px; color: var(--ink-soft); }
+.td-dread { font-size: 20px; }
+
+/* ── Badges ── */
+.badge { padding: 4px 10px; border-radius: 100px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; display: inline-block; }
+.badge-NEW { background: rgba(43, 156, 176, 0.12); color: #1a7d91; }
+.badge-CONTACTED { background: rgba(232, 181, 71, 0.2); color: #8a6a10; }
+.badge-SCHEDULED { background: rgba(138, 100, 200, 0.12); color: #5c3d9e; }
+.badge-CONVERTED { background: rgba(52, 168, 83, 0.15); color: #1a6b33; }
+.badge-LOST { background: rgba(15, 40, 71, 0.08); color: #334664; }
+
+.edit-btn {
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.edit-btn:hover { border-color: var(--peach); color: var(--navy); }
+
+/* ── Empty / loading ── */
+.table-message { text-align: center; padding: 64px 20px; color: var(--ink-soft); font-size: 15px; }
+
+/* ── Modal ── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 40, 71, 0.5);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.modal {
+  background: var(--paper);
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+.modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: var(--cream-deep);
+  border: none;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--ink-soft);
+  display: grid;
+  place-items: center;
+  transition: background 0.2s;
+  line-height: 1;
+}
+.modal-close:hover { background: rgba(15, 40, 71, 0.12); }
+.modal-name { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 500; margin-bottom: 4px; letter-spacing: -0.015em; }
+.modal-submitted { font-size: 13px; color: var(--ink-soft); margin-bottom: 24px; }
+.modal-section { margin-bottom: 20px; }
+.modal-section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+.modal-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.modal-detail-item { background: var(--cream); border-radius: 10px; padding: 12px 14px; }
+.modal-detail-key { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
+.modal-detail-val { font-size: 14px; color: var(--ink); }
+.modal-notes-block { background: var(--cream); border-radius: 10px; padding: 14px 16px; font-size: 14px; color: var(--ink-soft); font-style: italic; line-height: 1.55; }
+.modal-divider { border: none; border-top: 1px solid var(--rule); margin: 24px 0; }
+.modal-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px; }
+.modal-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(15, 40, 71, 0.18);
+  border-radius: 12px;
+  background: var(--cream);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  outline: none;
+  margin-bottom: 16px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.modal-select:focus { border-color: var(--peach); }
+.modal-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(15, 40, 71, 0.18);
+  border-radius: 12px;
+  background: var(--cream);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+  outline: none;
+  resize: vertical;
+  min-height: 90px;
+}
+.modal-textarea:focus { border-color: var(--peach); }
+.modal-actions { display: flex; gap: 12px; margin-top: 20px; justify-content: flex-end; }
+.modal-cancel {
+  padding: 12px 20px;
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.modal-cancel:hover { border-color: var(--ink-soft); color: var(--ink); }
+.modal-save {
+  padding: 12px 24px;
+  background: var(--navy);
+  color: var(--cream);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.modal-save:hover { background: var(--ink); }
+.modal-save:disabled { opacity: 0.6; cursor: not-allowed; }
+.modal-save-error { font-size: 13px; color: #a01818; margin-top: 8px; display: none; }
+.modal-save-error.visible { display: block; }
+
+/* ── UTM chips ── */
+.utm-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.utm-chip { background: var(--cream); border: 1px solid var(--rule); border-radius: 100px; padding: 4px 10px; font-size: 12px; color: var(--ink-soft); }
+.utm-chip strong { color: var(--ink); }
+
+@media (max-width: 640px) {
+  .admin-main { padding: 20px 16px; }
+  .stats-row { grid-template-columns: repeat(3, 1fr); }
+  .modal { padding: 28px 24px; }
+  .modal-detail-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Login ── -->
+<div id="login-wrap" class="login-wrap">
+  <div class="login-card">
+    <h1>Laundry Mates <em>Admin</em></h1>
+    <p>For Kathy and the team only.</p>
+    <form id="login-form">
+      <input type="password" id="login-pw" class="login-input" placeholder="Password" required autocomplete="current-password">
+      <button type="submit" id="login-btn" class="login-btn">Sign in</button>
+      <p id="login-error" class="login-error">Wrong password. Try again.</p>
+    </form>
+  </div>
+</div>
+
+<!-- ── Dashboard ── -->
+<div id="dashboard" hidden>
+  <nav class="admin-nav">
+    <span class="admin-nav-brand">Your Laundry Mates &middot; <em>Admin</em></span>
+    <div class="admin-nav-right">
+      <span id="nav-count" class="admin-nav-count"></span>
+      <button id="logout-btn" class="logout-btn">Sign out</button>
+    </div>
+  </nav>
+
+  <main class="admin-main">
+    <div id="stats-row" class="stats-row"></div>
+
+    <div class="table-toolbar">
+      <span id="table-count" class="table-count"></span>
+      <button id="refresh-btn" class="refresh-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Refresh
+      </button>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Frequency</th>
+            <th>Dread</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="leads-tbody">
+          <tr><td colspan="7"><div class="table-message">Loading&hellip;</div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- ── Modal ── -->
+<div id="modal-backdrop" class="modal-backdrop" hidden>
+  <div class="modal" role="dialog" aria-modal="true">
+    <button id="modal-close" class="modal-close" aria-label="Close">&#x2715;</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const FREQ_LABELS = { WEEKLY: 'Weekly', BIWEEKLY: 'Biweekly', MONTHLY: 'Monthly', AS_NEEDED: 'As needed' };
+const DREAD_EMOJI = { 1: '😌', 2: '🙂', 3: '😐', 4: '😟', 5: '😫' };
+const STATUSES = ['NEW', 'CONTACTED', 'SCHEDULED', 'CONVERTED', 'LOST'];
+
+let token = sessionStorage.getItem('mates_admin_token') || '';
+let leads = [];
+let activeFilter = '';
+let editingId = null;
+
+function esc(s) {
+  return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function fmtDate(iso) {
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) +
+    ' · ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+}
+
+function authHeaders() {
+  return { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` };
+}
+
+// ── Auth ──
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const pw = document.getElementById('login-pw').value;
+  const btn = document.getElementById('login-btn');
+  const errEl = document.getElementById('login-error');
+  btn.disabled = true;
+  btn.textContent = 'Checking…';
+  errEl.classList.remove('visible');
+
+  try {
+    const res = await fetch('/api/admin/leads', { headers: { 'Authorization': `Bearer ${pw}` } });
+    if (res.status === 401) throw new Error('wrong');
+    token = pw;
+    sessionStorage.setItem('mates_admin_token', token);
+    leads = await res.json();
+    showDashboard();
+  } catch {
+    errEl.classList.add('visible');
+    btn.disabled = false;
+    btn.textContent = 'Sign in';
+  }
+});
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+  sessionStorage.removeItem('mates_admin_token');
+  token = '';
+  leads = [];
+  activeFilter = '';
+  document.getElementById('dashboard').hidden = true;
+  document.getElementById('login-wrap').style.display = 'flex';
+  document.getElementById('login-pw').value = '';
+  document.getElementById('login-btn').disabled = false;
+  document.getElementById('login-btn').textContent = 'Sign in';
+});
+
+// ── Dashboard ──
+function showDashboard() {
+  document.getElementById('login-wrap').style.display = 'none';
+  document.getElementById('dashboard').hidden = false;
+  render();
+}
+
+async function loadLeads() {
+  try {
+    const res = await fetch('/api/admin/leads', { headers: authHeaders() });
+    if (res.status === 401) {
+      sessionStorage.removeItem('mates_admin_token');
+      location.reload();
+      return;
+    }
+    if (!res.ok) throw new Error('failed');
+    leads = await res.json();
+    render();
+  } catch {
+    document.getElementById('leads-tbody').innerHTML =
+      '<tr><td colspan="7"><div class="table-message">Failed to load. Try refreshing.</div></td></tr>';
+  }
+}
+
+document.getElementById('refresh-btn').addEventListener('click', loadLeads);
+
+// ── Render ──
+function render() {
+  renderStats();
+  renderTable();
+}
+
+function renderStats() {
+  const counts = { '': leads.length };
+  STATUSES.forEach(s => { counts[s] = leads.filter(l => l.status === s).length; });
+
+  const tabs = [
+    { key: '', label: 'All' },
+    { key: 'NEW', label: 'New' },
+    { key: 'CONTACTED', label: 'Contacted' },
+    { key: 'SCHEDULED', label: 'Scheduled' },
+    { key: 'CONVERTED', label: 'Converted' },
+    { key: 'LOST', label: 'Lost' },
+  ];
+
+  document.getElementById('stats-row').innerHTML = tabs.map(t => `
+    <div class="stat-card${activeFilter === t.key ? ' active' : ''}" data-filter="${t.key}">
+      <div class="stat-label">${t.label}</div>
+      <div class="stat-value">${counts[t.key]}</div>
+    </div>`).join('');
+
+  document.getElementById('nav-count').textContent =
+    `${leads.length} lead${leads.length !== 1 ? 's' : ''}`;
+
+  document.querySelectorAll('.stat-card').forEach(card => {
+    card.addEventListener('click', () => {
+      activeFilter = card.dataset.filter;
+      render();
+    });
+  });
+}
+
+function renderTable() {
+  const filtered = activeFilter ? leads.filter(l => l.status === activeFilter) : leads;
+  document.getElementById('table-count').textContent =
+    `Showing ${filtered.length} of ${leads.length}`;
+
+  if (!filtered.length) {
+    document.getElementById('leads-tbody').innerHTML = `
+      <tr><td colspan="7"><div class="table-message">
+        No leads${activeFilter ? ` with status &ldquo;${esc(activeFilter)}&rdquo;` : ''} yet.
+      </div></td></tr>`;
+    return;
+  }
+
+  document.getElementById('leads-tbody').innerHTML = filtered.map(l => `
+    <tr>
+      <td class="td-date">${esc(fmtDate(l.created_at))}</td>
+      <td class="td-name">${esc(l.name)}</td>
+      <td>
+        <div class="td-contact-val">${esc(l.contact)}</div>
+        <div class="td-contact-type">${esc(l.contact_type)}</div>
+      </td>
+      <td class="td-freq">${l.frequency ? esc(FREQ_LABELS[l.frequency] || l.frequency) : '<span style="opacity:.3">—</span>'}</td>
+      <td class="td-dread">${l.dread_score ? (DREAD_EMOJI[l.dread_score] || l.dread_score) : '<span style="opacity:.3;font-size:14px">—</span>'}</td>
+      <td><span class="badge badge-${esc(l.status)}">${esc(l.status)}</span></td>
+      <td><button class="edit-btn" data-id="${l.id}">Edit</button></td>
+    </tr>`).join('');
+
+  document.querySelectorAll('.edit-btn').forEach(btn => {
+    btn.addEventListener('click', () => openModal(Number(btn.dataset.id)));
+  });
+}
+
+// ── Modal ──
+function openModal(id) {
+  editingId = id;
+  const l = leads.find(x => x.id === id);
+  if (!l) return;
+
+  const hasUtm = l.utm_source || l.utm_medium || l.utm_campaign || l.referrer;
+  const utmChips = [
+    l.utm_source   && `<span class="utm-chip"><strong>source</strong> ${esc(l.utm_source)}</span>`,
+    l.utm_medium   && `<span class="utm-chip"><strong>medium</strong> ${esc(l.utm_medium)}</span>`,
+    l.utm_campaign && `<span class="utm-chip"><strong>campaign</strong> ${esc(l.utm_campaign)}</span>`,
+    l.referrer     && `<span class="utm-chip"><strong>ref</strong> ${esc(l.referrer)}</span>`,
+  ].filter(Boolean).join('');
+
+  const details = [
+    { key: 'Contact', val: esc(l.contact) },
+    { key: 'Via', val: esc(l.contact_type) },
+    l.frequency  ? { key: 'Frequency',   val: esc(FREQ_LABELS[l.frequency] || l.frequency) } : null,
+    l.dread_score ? { key: 'Dread score', val: `${DREAD_EMOJI[l.dread_score] || ''} ${l.dread_score} / 5` } : null,
+  ].filter(Boolean);
+
+  document.getElementById('modal-body').innerHTML = `
+    <p class="modal-name">${esc(l.name)}</p>
+    <p class="modal-submitted">Submitted ${fmtDate(l.created_at)}</p>
+
+    <div class="modal-section">
+      <div class="modal-section-label">Details</div>
+      <div class="modal-detail-grid">
+        ${details.map(d => `
+          <div class="modal-detail-item">
+            <div class="modal-detail-key">${d.key}</div>
+            <div class="modal-detail-val">${d.val}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    ${l.notes ? `
+    <div class="modal-section">
+      <div class="modal-section-label">Their notes</div>
+      <div class="modal-notes-block">${esc(l.notes)}</div>
+    </div>` : ''}
+
+    ${hasUtm ? `
+    <div class="modal-section">
+      <div class="modal-section-label">Attribution</div>
+      <div class="utm-chips">${utmChips}</div>
+    </div>` : ''}
+
+    <hr class="modal-divider">
+
+    <label class="modal-label" for="modal-status">Status</label>
+    <select id="modal-status" class="modal-select">
+      ${STATUSES.map(s => `<option value="${s}"${l.status === s ? ' selected' : ''}>${s}</option>`).join('')}
+    </select>
+
+    <label class="modal-label" for="modal-notes">Admin notes</label>
+    <textarea id="modal-notes" class="modal-textarea" placeholder="Internal notes for Kathy and the team…">${esc(l.admin_notes || '')}</textarea>
+
+    <p id="modal-save-error" class="modal-save-error"></p>
+    <div class="modal-actions">
+      <button class="modal-cancel" id="modal-cancel-btn">Cancel</button>
+      <button class="modal-save" id="modal-save-btn">Save changes</button>
+    </div>`;
+
+  document.getElementById('modal-cancel-btn').addEventListener('click', closeModal);
+  document.getElementById('modal-save-btn').addEventListener('click', saveModal);
+  document.getElementById('modal-backdrop').hidden = false;
+}
+
+function closeModal() {
+  document.getElementById('modal-backdrop').hidden = true;
+  editingId = null;
+}
+
+async function saveModal() {
+  const saveBtn = document.getElementById('modal-save-btn');
+  const errEl  = document.getElementById('modal-save-error');
+  const status      = document.getElementById('modal-status').value;
+  const admin_notes = document.getElementById('modal-notes').value;
+
+  saveBtn.disabled = true;
+  saveBtn.textContent = 'Saving…';
+  errEl.classList.remove('visible');
+
+  try {
+    const res = await fetch(`/api/admin/leads/${editingId}`, {
+      method: 'PATCH',
+      headers: authHeaders(),
+      body: JSON.stringify({ status, admin_notes }),
+    });
+    if (!res.ok) throw new Error((await res.json()).error || 'Failed to save');
+    const updated = await res.json();
+    const idx = leads.findIndex(l => l.id === editingId);
+    if (idx !== -1) leads[idx] = updated;
+    closeModal();
+    render();
+  } catch (err) {
+    errEl.textContent = err.message;
+    errEl.classList.add('visible');
+    saveBtn.disabled = false;
+    saveBtn.textContent = 'Save changes';
+  }
+}
+
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-backdrop').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('modal-backdrop')) closeModal();
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+// ── Init ──
+if (token) {
+  document.getElementById('login-wrap').style.display = 'none';
+  document.getElementById('dashboard').hidden = false;
+  loadLeads();
+}
+</script>
+</body>
+</html>
