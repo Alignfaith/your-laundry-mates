@@ -332,7 +332,22 @@ td:last-child { text-align: right; }
   min-height: 90px;
 }
 .modal-textarea:focus { border-color: var(--peach); }
-.modal-actions { display: flex; gap: 12px; margin-top: 20px; justify-content: flex-end; }
+.modal-actions { display: flex; gap: 12px; margin-top: 20px; align-items: center; }
+.modal-actions-right { display: flex; gap: 12px; margin-left: auto; }
+.modal-delete {
+  padding: 12px 20px;
+  background: none;
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  border-radius: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #a01818;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.modal-delete:hover { background: rgba(192, 57, 43, 0.06); border-color: #a01818; }
+.modal-delete:disabled { opacity: 0.5; cursor: not-allowed; }
 .modal-cancel {
   padding: 12px 20px;
   background: none;
@@ -413,10 +428,16 @@ td:last-child { text-align: right; }
 
     <div class="table-toolbar">
       <span id="table-count" class="table-count"></span>
-      <button id="refresh-btn" class="refresh-btn">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-        Refresh
-      </button>
+      <div style="display:flex;gap:8px">
+        <button id="export-btn" class="refresh-btn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export CSV
+        </button>
+        <button id="refresh-btn" class="refresh-btn">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          Refresh
+        </button>
+      </div>
     </div>
 
     <div class="table-wrap">
@@ -533,6 +554,30 @@ async function loadLeads() {
 }
 
 document.getElementById('refresh-btn').addEventListener('click', loadLeads);
+document.getElementById('export-btn').addEventListener('click', exportCSV);
+
+function exportCSV() {
+  function cell(v) {
+    if (v == null) return '';
+    const s = String(v);
+    return /[,"\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  }
+  const headers = ['Date','Name','Contact','Contact Type','Frequency','Dread Score','Interest Level','Notes','Status','Admin Notes','UTM Source','UTM Campaign'];
+  const rows = leads.map(l => [
+    new Date(l.created_at).toLocaleString('en-US'),
+    l.name, l.contact, l.contact_type,
+    l.frequency || '', l.dread_score || '', l.interest_level || '',
+    l.notes || '', l.status, l.admin_notes || '',
+    l.utm_source || '', l.utm_campaign || '',
+  ].map(cell).join(','));
+  const csv = [headers.join(','), ...rows].join('\r\n');
+  const a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(new Blob([csv], { type: 'text/csv' })),
+    download: `leads-${new Date().toISOString().slice(0, 10)}.csv`,
+  });
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
 
 // ── Render ──
 function render() {
@@ -662,12 +707,16 @@ function openModal(id) {
 
     <p id="modal-save-error" class="modal-save-error"></p>
     <div class="modal-actions">
-      <button class="modal-cancel" id="modal-cancel-btn">Cancel</button>
-      <button class="modal-save" id="modal-save-btn">Save changes</button>
+      <button class="modal-delete" id="modal-delete-btn">Delete lead</button>
+      <div class="modal-actions-right">
+        <button class="modal-cancel" id="modal-cancel-btn">Cancel</button>
+        <button class="modal-save" id="modal-save-btn">Save changes</button>
+      </div>
     </div>`;
 
   document.getElementById('modal-cancel-btn').addEventListener('click', closeModal);
   document.getElementById('modal-save-btn').addEventListener('click', saveModal);
+  document.getElementById('modal-delete-btn').addEventListener('click', deleteLead);
   document.getElementById('modal-backdrop').hidden = false;
 }
 
@@ -720,6 +769,30 @@ document.getElementById('pw-toggle').addEventListener('click', () => {
     icon.innerHTML = `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
   }
 });
+
+async function deleteLead() {
+  if (!confirm('Are you sure? This cannot be undone.')) return;
+  const btn = document.getElementById('modal-delete-btn');
+  const errEl = document.getElementById('modal-save-error');
+  btn.disabled = true;
+  btn.textContent = 'Deleting…';
+  errEl.classList.remove('visible');
+  try {
+    const res = await fetch(`/api/admin/leads/${editingId}`, {
+      method: 'DELETE',
+      headers: authHeaders(),
+    });
+    if (!res.ok) throw new Error((await res.json()).error || 'Failed to delete');
+    leads = leads.filter(l => l.id !== editingId);
+    closeModal();
+    render();
+  } catch (err) {
+    errEl.textContent = err.message;
+    errEl.classList.add('visible');
+    btn.disabled = false;
+    btn.textContent = 'Delete lead';
+  }
+}
 
 document.getElementById('modal-close').addEventListener('click', closeModal);
 document.getElementById('modal-backdrop').addEventListener('click', (e) => {
