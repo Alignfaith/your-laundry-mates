@@ -41,8 +41,12 @@ module.exports = async (req, res) => {
       RETURNING id
     `;
 
+    console.log('[resend] RESEND_API_KEY present:', !!process.env.RESEND_API_KEY);
+    console.log('[resend] NOTIFY_EMAIL present:', !!process.env.NOTIFY_EMAIL, '|', process.env.NOTIFY_EMAIL);
+
     if (process.env.RESEND_API_KEY && process.env.NOTIFY_EMAIL) {
       const resend = new Resend(process.env.RESEND_API_KEY);
+      const to = process.env.NOTIFY_EMAIL.split(',').map(s => s.trim()).filter(Boolean);
       const detailRows = [
         ['Contact', `${esc(contact)} (${contact_type})`],
         frequency ? ['Frequency', FREQ_LABELS[frequency] || frequency] : null,
@@ -51,23 +55,28 @@ module.exports = async (req, res) => {
         utm_source ? ['Source', esc(utm_source)] : null,
       ].filter(Boolean);
 
-      resend.emails.send({
-        from: 'Your Laundry Mates <notifications@yourlaundrymates.com>',
-        to: process.env.NOTIFY_EMAIL.split(',').map(s => s.trim()).filter(Boolean),
-        subject: `New lead — ${name.trim()}`,
-        html: `
-          <div style="font-family:sans-serif;max-width:480px;color:#0f2847">
-            <h2 style="margin:0 0 4px;font-size:20px">New lead from ${esc(name.trim())}</h2>
-            <p style="color:#334664;margin:0 0 24px;font-size:14px">Submitted via your website</p>
-            <table style="width:100%;border-collapse:collapse">
-              ${detailRows.map(([k, v]) => `
-                <tr>
-                  <td style="padding:10px 12px 10px 0;border-top:1px solid #eee;font-weight:600;width:130px;vertical-align:top;font-size:14px">${k}</td>
-                  <td style="padding:10px 0;border-top:1px solid #eee;font-size:14px;vertical-align:top">${v}</td>
-                </tr>`).join('')}
-            </table>
-          </div>`,
-      }).catch(err => console.error('resend notify:', err.message));
+      try {
+        const result = await resend.emails.send({
+          from: 'Your Laundry Mates <notifications@yourlaundrymates.com>',
+          to,
+          subject: `New lead — ${name.trim()}`,
+          html: `
+            <div style="font-family:sans-serif;max-width:480px;color:#0f2847">
+              <h2 style="margin:0 0 4px;font-size:20px">New lead from ${esc(name.trim())}</h2>
+              <p style="color:#334664;margin:0 0 24px;font-size:14px">Submitted via your website</p>
+              <table style="width:100%;border-collapse:collapse">
+                ${detailRows.map(([k, v]) => `
+                  <tr>
+                    <td style="padding:10px 12px 10px 0;border-top:1px solid #eee;font-weight:600;width:130px;vertical-align:top;font-size:14px">${k}</td>
+                    <td style="padding:10px 0;border-top:1px solid #eee;font-size:14px;vertical-align:top">${v}</td>
+                  </tr>`).join('')}
+              </table>
+            </div>`,
+        });
+        console.log('[resend] send result:', JSON.stringify(result));
+      } catch (err) {
+        console.error('[resend] send error:', err.message);
+      }
     }
 
     return res.status(201).json({ id: row.id });
